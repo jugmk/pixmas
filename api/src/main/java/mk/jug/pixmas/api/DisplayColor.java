@@ -4,26 +4,25 @@ import java.util.Arrays;
 
 public class DisplayColor {
     
-    private int[] colors;
+    private double[] colors;
        
     public DisplayColor(int channels) {
-        colors = new int[channels];
+        colors = new double[channels];
     }
     
-    public DisplayColor(int ... colors) {
+    public DisplayColor(double... colors) {
         this.colors = Arrays.copyOf(colors, colors.length);
     }
 
-    public int[] getColors() {
+    public double[] getColors() {
         return colors;
     }
 
-    public void setColors(int[] colors) {
+    public void setColors(double[] colors) {
         this.colors = colors;
     }
     
-    public void setChannelColor(int channel, int color) {
+    public void setChannelColor(int channel, double color) {
         colors[channel] = color;
     }
-
 }

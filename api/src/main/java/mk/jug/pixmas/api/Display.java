@@ -4,7 +4,7 @@ public interface Display {
     
     DisplayCapabilities getCapabilities();
     
-    DisplayColor getColor(int R, int G, int B);
+    DisplayColor getColor(double R, double G, double B);
     
     void setPixel(int X, int Y, DisplayColor displayColor);
     
