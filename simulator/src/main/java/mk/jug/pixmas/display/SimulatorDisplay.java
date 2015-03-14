@@ -29,7 +29,7 @@ public class SimulatorDisplay implements Display {
   }
 
   public static void main(String[] args) {
-    SimulatorDisplay simulatorDisplay = new SimulatorDisplay(new DisplayCapabilities(10, 10, -1, 1, 1, 1));
+    SimulatorDisplay simulatorDisplay = new SimulatorDisplay(new DisplayCapabilities(10,4 , -1, 1, 1, 1));
 
     simulatorDisplay.run(args, ()->{
       simulatorDisplay.setPixel(2, 2, new DisplayColor(0.2, 0.9, 0.0));
@@ -38,16 +38,11 @@ public class SimulatorDisplay implements Display {
     });
 
 
-    simulatorDisplay.setPixel(2, 2, new DisplayColor(0.2, 0.9, 0.0));
-    simulatorDisplay.refresh();
-
   }
 
   public void run(String[] args, Runnable runnable) {
 
-
     DisplayCapabilities capabilities = getCapabilities();
-
 
     Utility.launchApp((app, primaryStage) -> {
       primaryStage.setWidth(capabilities.getWidth() * radius * 3);
@@ -130,6 +125,5 @@ public class SimulatorDisplay implements Display {
 
   @Override
   public void refresh() {
-
   }
 }
