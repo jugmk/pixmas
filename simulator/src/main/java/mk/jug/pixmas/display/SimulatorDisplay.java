@@ -36,11 +36,7 @@ public class SimulatorDisplay implements Display {
 
   synchronized void doIt() throws InterruptedException {
     System.out.println("before");
-    new Thread(() -> startApp(null, () -> {
-//      simulatorDisplay.setPixel(2, 2, new DisplayColor(0.2, 0.9, 0.0));
-      refresh();
-
-    })).start();
+    new Thread(() -> startApp(null)).start();
 
     wait(10000);
 
@@ -51,7 +47,7 @@ public class SimulatorDisplay implements Display {
 
   }
 
-  public void startApp(String[] args, Runnable runnable) {
+  public void startApp(String[] args ) {
 
     DisplayCapabilities capabilities = getCapabilities();
 
@@ -61,7 +57,6 @@ public class SimulatorDisplay implements Display {
       primaryStage.setScene(new Scene(gridpane, 0, 0));
       primaryStage.setResizable(false);
       primaryStage.show();
-      Platform.runLater(runnable);
 
     }, args);
   }
