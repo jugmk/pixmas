@@ -11,6 +11,8 @@
   <modules>
     <module>api</module>
     <module>p4jext</module>
+    <module>simulator</module>
+    <module>protocol</module>
   </modules>
 
   <build>
