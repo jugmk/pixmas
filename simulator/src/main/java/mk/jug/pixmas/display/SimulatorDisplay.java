@@ -1,5 +1,6 @@
 package mk.jug.pixmas.display;
 
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
@@ -20,8 +21,6 @@ public class SimulatorDisplay implements Display {
   private static final int radius = 8;
   private static final Color DEFAULT_COLOR = Color.BLANCHEDALMOND;
   private final GridPane gridpane;
-  private Stage stage;
-  ;
 
 
   public SimulatorDisplay(DisplayCapabilities displayCapabilities) {
@@ -31,13 +30,20 @@ public class SimulatorDisplay implements Display {
 
   public static void main(String[] args) {
     SimulatorDisplay simulatorDisplay = new SimulatorDisplay(new DisplayCapabilities(10, 10, -1, 1, 1, 1));
-    simulatorDisplay.run(args);
+
+    simulatorDisplay.run(args, ()->{
+      simulatorDisplay.setPixel(2, 2, new DisplayColor(0.2, 0.9, 0.0));
+      simulatorDisplay.refresh();
+
+    });
+
+
     simulatorDisplay.setPixel(2, 2, new DisplayColor(0.2, 0.9, 0.0));
     simulatorDisplay.refresh();
 
   }
 
-  public void run(String[] args) {
+  public void run(String[] args, Runnable runnable) {
 
 
     DisplayCapabilities capabilities = getCapabilities();
@@ -49,7 +55,7 @@ public class SimulatorDisplay implements Display {
       primaryStage.setScene(new Scene(gridpane, 0, 0));
       primaryStage.setResizable(false);
       primaryStage.show();
-      stage = primaryStage;
+      Platform.runLater(runnable);
 
     }, args);
   }
@@ -108,7 +114,6 @@ public class SimulatorDisplay implements Display {
 
   @Override
   public DisplayColor getPixel(int x, int y) {
-
     Color fill = findColorFromComponent(x, y);
 
     return new DisplayColor(fill.getRed(), fill.getGreen(), fill.getBlue());
@@ -125,7 +130,6 @@ public class SimulatorDisplay implements Display {
 
   @Override
   public void refresh() {
-    stage.show();
 
   }
 }
