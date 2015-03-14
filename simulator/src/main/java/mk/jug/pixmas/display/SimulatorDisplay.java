@@ -42,7 +42,7 @@ public class SimulatorDisplay implements Display {
 
     System.out.println("after");
 
-    setPixel(3, 3, new DisplayColor(0.5, 0.5, 0.5));
+    setPixel(4, 3, new DisplayColor(0.5, 0.5, 0.5));
     wait(10000);
 
   }
@@ -52,10 +52,11 @@ public class SimulatorDisplay implements Display {
     DisplayCapabilities capabilities = getCapabilities();
 
     Utility.launchApp((app, primaryStage) -> {
-      primaryStage.setWidth(capabilities.getWidth() * radius * 3);
-      primaryStage.setHeight(capabilities.getHeight() * radius * 3);
+//      primaryStage.setWidth(capabilities.getWidth() * radius * 2 );
+//      primaryStage.setHeight(capabilities.getHeight() * radius * 2);
       primaryStage.setScene(new Scene(gridpane, 0, 0));
       primaryStage.setResizable(false);
+//        primaryStage.
       primaryStage.show();
 
     }, args);
@@ -63,8 +64,9 @@ public class SimulatorDisplay implements Display {
 
   private static GridPane initialState(DisplayCapabilities capabilities, int radius) {
     GridPane gridpane = new GridPane();
-    for (int i = 0; i < capabilities.getWidth(); i++) {
-      for (int j = 0; j < capabilities.getHeight(); j++) {
+    for (int j = 0; j < capabilities.getHeight(); j++) {
+      for (int i = 0; i < capabilities.getWidth(); i++) {
+
         Circle circle = new Circle(radius);
 
         circle.setFill(DEFAULT_COLOR);
