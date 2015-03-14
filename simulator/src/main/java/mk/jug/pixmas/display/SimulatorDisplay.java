@@ -7,7 +7,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 import mk.jug.pixmas.api.Display;
 import mk.jug.pixmas.api.DisplayCapabilities;
 import mk.jug.pixmas.api.DisplayColor;
@@ -28,19 +27,31 @@ public class SimulatorDisplay implements Display {
     gridpane = initialState(displayCapabilities, radius);
   }
 
-  public static void main(String[] args) {
-    SimulatorDisplay simulatorDisplay = new SimulatorDisplay(new DisplayCapabilities(10,4 , -1, 1, 1, 1));
 
-    simulatorDisplay.run(args, ()->{
-      simulatorDisplay.setPixel(2, 2, new DisplayColor(0.2, 0.9, 0.0));
-      simulatorDisplay.refresh();
 
-    });
+  public static void main(String[] args) throws InterruptedException {
+    SimulatorDisplay simulatorDisplay = new SimulatorDisplay(new DisplayCapabilities(10, 4, -1, 1, 1, 1));
+    simulatorDisplay.doIt();
+  }
 
+  synchronized void doIt() throws InterruptedException {
+    System.out.println("before");
+    new Thread(() -> startApp(null, () -> {
+//      simulatorDisplay.setPixel(2, 2, new DisplayColor(0.2, 0.9, 0.0));
+      refresh();
+
+    })).start();
+
+    wait(10000);
+
+    System.out.println("after");
+
+    setPixel(3, 3, new DisplayColor(0.5, 0.5, 0.5));
+    wait(10000);
 
   }
 
-  public void run(String[] args, Runnable runnable) {
+  public void startApp(String[] args, Runnable runnable) {
 
     DisplayCapabilities capabilities = getCapabilities();
 
@@ -85,9 +96,11 @@ public class SimulatorDisplay implements Display {
 
   @Override
   public void setPixel(int x, int y, DisplayColor displayColor) {
-    Circle circle = findCircle(x, y);
-    double[] colors = displayColor.getColors();
-    circle.setFill(new Color(colors[0], colors[1], colors[2], 1));
+    Platform.runLater(() -> {
+      Circle circle = findCircle(x, y);
+      double[] colors = displayColor.getColors();
+      circle.setFill(new Color(colors[0], colors[1], colors[2], 1));
+    });
   }
 
   private Circle findCircle(int x, int y) {
