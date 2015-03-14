@@ -11,5 +11,12 @@
   <packaging>jar</packaging>
   <artifactId>simulator</artifactId>
 
+  <dependencies>
+    <dependency>
+      <groupId>mk.jug.pixmas</groupId>
+      <artifactId>api</artifactId>
+      <version>0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
 
 </project>
