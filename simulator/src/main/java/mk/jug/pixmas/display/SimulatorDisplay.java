@@ -52,11 +52,10 @@ public class SimulatorDisplay implements Display {
     DisplayCapabilities capabilities = getCapabilities();
 
     Utility.launchApp((app, primaryStage) -> {
-//      primaryStage.setWidth(capabilities.getWidth() * radius * 2 );
-//      primaryStage.setHeight(capabilities.getHeight() * radius * 2);
+      primaryStage.setWidth(capabilities.getWidth() * radius * 3);
+      primaryStage.setHeight(capabilities.getHeight() * radius * 3);
       primaryStage.setScene(new Scene(gridpane, 0, 0));
       primaryStage.setResizable(false);
-//        primaryStage.
       primaryStage.show();
 
     }, args);
