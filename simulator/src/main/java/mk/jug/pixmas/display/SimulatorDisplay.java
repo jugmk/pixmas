@@ -42,7 +42,7 @@ public class SimulatorDisplay implements Display {
 
     System.out.println("after");
 
-    setPixel(3, 3, new DisplayColor(0.5, 0.5, 0.5));
+    setPixel(4, 3, new DisplayColor(0.5, 0.5, 0.5));
     wait(10000);
 
   }
@@ -63,8 +63,9 @@ public class SimulatorDisplay implements Display {
 
   private static GridPane initialState(DisplayCapabilities capabilities, int radius) {
     GridPane gridpane = new GridPane();
-    for (int i = 0; i < capabilities.getWidth(); i++) {
-      for (int j = 0; j < capabilities.getHeight(); j++) {
+    for (int j = 0; j < capabilities.getHeight(); j++) {
+      for (int i = 0; i < capabilities.getWidth(); i++) {
+
         Circle circle = new Circle(radius);
 
         circle.setFill(DEFAULT_COLOR);
@@ -99,7 +100,7 @@ public class SimulatorDisplay implements Display {
   }
 
   private Circle findCircle(int x, int y) {
-    Node node = gridpane.getChildren().get(x * getCapabilities().getWidth() + y);
+    Node node = gridpane.getChildren().get(y * getCapabilities().getWidth() + x);
     if (node instanceof Circle) {
       return (Circle) node;
     }
@@ -129,9 +130,5 @@ public class SimulatorDisplay implements Display {
       circle.setFill(DEFAULT_COLOR);
     });
 
-  }
-
-  @Override
-  public void refresh() {
   }
 }
