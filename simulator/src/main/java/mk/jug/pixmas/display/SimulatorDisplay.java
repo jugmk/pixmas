@@ -104,7 +104,7 @@ public class SimulatorDisplay implements Display {
   }
 
   private Circle findCircle(int x, int y) {
-    Node node = gridpane.getChildren().get(x * getCapabilities().getWidth() + y);
+    Node node = gridpane.getChildren().get(y * getCapabilities().getWidth() + x);
     if (node instanceof Circle) {
       return (Circle) node;
     }
