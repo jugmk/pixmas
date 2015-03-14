@@ -131,8 +131,4 @@ public class SimulatorDisplay implements Display {
     });
 
   }
-
-  @Override
-  public void refresh() {
-  }
 }

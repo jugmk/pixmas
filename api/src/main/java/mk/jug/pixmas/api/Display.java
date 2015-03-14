@@ -12,5 +12,4 @@ public interface Display {
 
   void clear();
 
-  void refresh();
 }
