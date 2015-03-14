@@ -3,6 +3,7 @@ package mk.jug.pixmas.display;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -52,11 +53,13 @@ public class SimulatorDisplay implements Display {
     DisplayCapabilities capabilities = getCapabilities();
 
     Utility.launchApp((app, primaryStage) -> {
-//      primaryStage.setWidth(capabilities.getWidth() * radius * 2 );
-//      primaryStage.setHeight(capabilities.getHeight() * radius * 2);
+
+
+
+      primaryStage.setWidth(capabilities.getWidth() * radius * 2 );
+      primaryStage.setHeight(capabilities.getHeight() * radius * 2);
       primaryStage.setScene(new Scene(gridpane, 0, 0));
       primaryStage.setResizable(false);
-//        primaryStage.
       primaryStage.show();
 
     }, args);
@@ -94,9 +97,9 @@ public class SimulatorDisplay implements Display {
   @Override
   public void setPixel(int x, int y, DisplayColor displayColor) {
     Platform.runLater(() -> {
-      Circle circle = findCircle(x, y);
-      double[] colors = displayColor.getColors();
-      circle.setFill(new Color(colors[0], colors[1], colors[2], 1));
+        Circle circle = findCircle(x, y);
+        double[] colors = displayColor.getColors();
+        circle.setFill(new Color(colors[0], colors[1], colors[2], 1));
     });
   }
 
