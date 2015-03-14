@@ -17,51 +17,37 @@ public class DisplayCapabilities {
 
     private int colorDepth;
 
-    public int getWidth() {
-        return width;
+    public DisplayCapabilities(int width, int height, float ppi, float speed, int colorChannels, int colorDepth) {
+        this.width = width;
+        this.height = height;
+        this.ppi = ppi;
+        this.speed = speed;
+        this.colorChannels = colorChannels;
+        this.colorDepth = colorDepth;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public int getWidth() {
+        return width;
     }
 
     public int getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     public float getPpi() {
         return ppi;
-    }
-
-    public void setPpi(float ppi) {
-        this.ppi = ppi;
     }
 
     public float getSpeed() {
         return speed;
     }
 
-    public void setSpeed(float speed) {
-        this.speed = speed;
-    }
-
     public int getColorChannels() {
         return colorChannels;
-    }
-
-    public void setColorChannels(int colorChannels) {
-        this.colorChannels = colorChannels;
     }
 
     public int getColorDepth() {
         return colorDepth;
     }
 
-    public void setColorDepth(int colorDepth) {
-        this.colorDepth = colorDepth;
-    }
 }
