@@ -20,7 +20,8 @@ public class SimulatorDisplay implements Display {
   private static final int radius = 8;
   private static final Color DEFAULT_COLOR = Color.BLANCHEDALMOND;
   private final GridPane gridpane;
-  private Stage stage;;
+  private Stage stage;
+  ;
 
 
   public SimulatorDisplay(DisplayCapabilities displayCapabilities) {
@@ -73,11 +74,11 @@ public class SimulatorDisplay implements Display {
   }
 
   @Override
-  public DisplayColor getColor(int R, int G, int B) {
+  public DisplayColor getColor(double R, double G, double B) {
     DisplayColor displayColor = new DisplayColor(3);
-    displayColor.setChannelColor(0, R / 255.0d);
-    displayColor.setChannelColor(1, G / 255.0d);
-    displayColor.setChannelColor(2, B / 255.0d);
+    displayColor.setChannelColor(0, R);
+    displayColor.setChannelColor(1, G);
+    displayColor.setChannelColor(2, B);
     return displayColor;
   }
 
