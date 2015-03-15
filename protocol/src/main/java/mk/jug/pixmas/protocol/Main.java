@@ -19,7 +19,13 @@ public class Main {
 
 //    main.doIt(4000000, 5, 1, 4);
 //    main.doIt(8000000, 10, 2, 7);
-    main.doIt(20000000, 25, 3, 12);
+//    main.doIt(20000000, 25, 3, 12);
+    
+    // 18MHz, actual is 15.6MHz. One cycle is 64nS, and smaller is 256nS, bigger is 1024nS
+    main.doIt(18000000, 20, 4, 16);
+
+    // 32MHz, actual is 31.2MHz. One cycle is 32nS, and smaller is 256nS, bigger is 1024nS
+    // main.doIt(32000000, 40, 8, 32);
   }
 
   public synchronized void doIt(int f, int L, int aa1, int aa2) throws InterruptedException {
