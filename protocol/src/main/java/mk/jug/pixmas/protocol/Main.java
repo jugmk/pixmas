@@ -6,6 +6,20 @@ public class Main {
 
   public static void main(String[] args) throws InterruptedException {
     Main main = new Main();
+    if (args.length > 0) {
+      if (args.length == 4) {
+        int f = Integer.parseInt(args[0]);
+        int x = Integer.parseInt(args[1]);
+        int a = Integer.parseInt(args[2]);
+        int b = Integer.parseInt(args[3]);
+        System.out.println(f + " " + x + " " + a + " " + b);
+        main.doIt(f, x, a, b);
+        return;
+      } else {
+        System.out.println("Usage: f x a b");
+        return;
+      }
+    }
 //    for (int f = 20000000; f < 32000000; f+=100000) {
 //      for (int a1 = 1; a1 < 15; a1++) {
 //        for (int a2 = 10; a2 < 23; a2++) {
@@ -22,14 +36,32 @@ public class Main {
 //    main.doIt(20000000, 25, 3, 12);
     
     // 18MHz, actual is 15.6MHz. One cycle is 64nS, and smaller is 256nS, bigger is 1024nS
-    main.doIt(18000000, 20, 4, 16);
+    //main.doIt(18000000, 20, 4, 9);
 
     // 32MHz, actual is 31.2MHz. One cycle is 32nS, and smaller is 256nS, bigger is 1024nS
     // main.doIt(32000000, 40, 8, 32);
+    
+    for (int a1 = 8; a1 < 12; a1++) {
+      for (int a2 = 12; a2 < 24; a2++) {
+        System.out.println(a1 + " " + a2);
+        for (int i = 0; i < 50; i++) {
+          pause(100);
+          main.doIt(32000000, 40, a1, a2);
+        }
+      }
+    }
+  }
+
+  private static void pause(int i) throws InterruptedException {
+    // TODO Auto-generated method stub
+    String s = "";
+    synchronized (s) {
+      s.wait(i);
+    }
   }
 
   public synchronized void doIt(int f, int L, int aa1, int aa2) throws InterruptedException {
-    System.out.println(f + " " + aa1 + " " + aa2);
+//    System.out.println(f + " " + aa1 + " " + aa2);
     
     // GpioController gpioController = GpioFactory.getInstance();
     // GpioPinDigitalOutput led = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_00, // PIN
@@ -108,9 +140,9 @@ public class Main {
 
     
     int u = Spi.wiringPiSPISetup(Spi.CHANNEL_0, f);
-    System.out.println(u);
+//    System.out.println(u);
     u = Spi.wiringPiSPIDataRW(Spi.CHANNEL_0, data, xc);
-    System.out.println(u);
+//    System.out.println(u);
 
 
 
